@@ -24,7 +24,7 @@
         <a class="nav-link" href="{{ route('site.home') }}">Home <span class="sr-only">(página atual)</span></a>
       </li>
       <li class="nav-item active">
-        <a class="nav-link" href="{{ route('add.index') }}">Adiconar <span class="sr-only">(página atual)</span></a>
+        <a class="nav-link" href="{{ route('add.create') }}">Adiconar <span class="sr-only">(página atual)</span></a>
       </li>
       <li class="nav-item">
         <a class="nav-link" href="#">Link</a>
