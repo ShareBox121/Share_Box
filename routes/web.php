@@ -1,6 +1,8 @@
 <?php
 
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\HomeController;
+use App\Http\Controllers\AddController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -14,9 +16,16 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+// rota responsável pela tela principal
+Route::get('/', [HomeController::class, 'index'])->name('site.home');
+
+// rota responsavel por criar, visualizar, editar, excluir e salvar
+Route::get('add.index', [AddController::class, 'index'])->name('add.index');
+Route::get('add.edit', [AddController::class, 'edit'])->name('add.edit');
+Route::get('add.destroy', [AddController::class, 'destroy'])->name('add.destroy');
+Route::get('add.show', [AddController::class, 'show'])->name('add.show');
+Route::get('add.store', [AddController::class, 'store'])->name('add.store');
+
 
 Route::get('/dashboard', function () {
     return view('dashboard');
