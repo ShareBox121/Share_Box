@@ -25,7 +25,7 @@ Route::get('add.edit', [AddController::class, 'edit'])->name('add.edit');
 Route::get('add.destroy', [AddController::class, 'destroy'])->name('add.destroy');
 Route::get('add.show', [AddController::class, 'show'])->name('add.show');
 Route::get('add.create', [AddController::class, 'create'])->name('add.create');
-Route::get('add.store', [AddController::class, 'store'])->name('add.store');
+Route::post('add.store', [AddController::class, 'store'])->name('add.store');
 
 
 Route::get('/dashboard', function () {
