@@ -1,0 +1,40 @@
+body {
+  background-image: url("./img/background.jpg");
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+}
+
+.card {
+  min-height: 200px !important;
+  padding: 1rem;
+  padding-top: 2rem;
+  border: 2px solid black !important;
+  border-radius: 30px !important;
+}
+
+
+input {
+  border-radius: 50px !important;
+  border: 2px solid black !important;
+}
+
+.btn {
+  border-radius: .5rem !important;
+  width: 350px;
+  height: 3rem;
+}
+@media screen and (max-width: 768px) {
+  .card {
+    padding: 1rem;
+    font-size: .4rem;
+  }
+}
+
+p{
+  color: rgb(171, 171, 171);
+}
+
+.form-control{
+width: 100% !important;
+}
