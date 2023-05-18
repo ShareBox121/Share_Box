@@ -1,0 +1,47 @@
+body {
+    background-image: url("../images/background.jpg");
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+}
+
+.card {
+    min-height: 200px !important;
+    padding: 3rem;
+    border: 2px solid black !important;
+    border-radius: 30px !important;
+}
+
+#logo {
+    object-fit: cover;
+    height: 60px;
+    width: 60px;
+}
+
+input {
+    border-radius: 50px !important;
+    border: 2px solid black !important;
+}
+
+.forgot-password {
+    color: black;
+}
+
+#open {
+    min-width: 50px !important;
+}
+
+.line {
+    border: 1px solid black;
+    width: 100%;
+}
+
+.btn {
+    border-radius: 30px !important;
+}
+
+@media screen and (max-width: 768px) {
+    .card {
+        padding: 1rem;
+    }
+}
