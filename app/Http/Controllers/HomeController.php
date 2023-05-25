@@ -46,6 +46,21 @@ class HomeController extends Controller
         //
     }
 
+    private function getFilteredPosts($searchType)
+    {
+        if ($searchType['search']) {
+            $search = $searchType['search'];
+            return Posts::where('tittle', 'like', "%{$search}%")->get();
+        } elseif ($searchType['searchID']) {
+            return Posts::where('id', $searchType['searchID'])->get();
+        } elseif ($searchType['searchFirst']) {
+            $search = $searchType['searchFirst'];
+            return Posts::where('tittle', 'LIKE', "{$search}%")->get();
+        } else {
+            return Posts::all();
+        }
+    }
+
     /**
      * Update the specified resource in storage.
      */
