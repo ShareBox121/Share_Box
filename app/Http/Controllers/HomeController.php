@@ -3,7 +3,6 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\Files;
 
 class HomeController extends Controller
 {
@@ -12,15 +11,7 @@ class HomeController extends Controller
      */
     public function index()
     {
-
-        $files = Files::all();
-
-        $searchType = [
-            'search' => request('search'),
-            'searchID' => request('searchID'),
-            'searchFirst' => request('searchFirst')
-        ];
-        return view('site.home', compact('files'));
+        return view('site.home');
     }
 
     /**
@@ -53,21 +44,6 @@ class HomeController extends Controller
     public function edit(string $id)
     {
         //
-    }
-
-    private function getFilteredPosts($searchType)
-    {
-        if ($searchType['search']) {
-            $search = $searchType['search'];
-            return Files::where('title', 'like', "%{$search}%")->get();
-        } elseif ($searchType['searchID']) {
-            return Files::where('id', $searchType['searchID'])->get();
-        } elseif ($searchType['searchFirst']) {
-            $search = $searchType['searchFirst'];
-            return Files::where('title', 'LIKE', "{$search}%")->get();
-        } else {
-            return Files::all();
-        }
     }
 
     /**

@@ -44,7 +44,7 @@ $(document).ready(function () {
         })
             .done(function (data) {
                 popularTabela(data);
-                ModalExcluirDados(data);
+                // ModalExcluirDados(data);
             })
             .fail(function (xhr, status, error) {
                 feedbackMessage.text('Nenhum dado disponível no banco.');
@@ -65,10 +65,10 @@ $(document).ready(function () {
                 linha.append($('<th>').text(item.id));
                 linha.append($('<td>').html(`<img src="${item.path}" width="100" height="100" />`));
 
-                const ModalButtonExc = $('<button type="button" data-bs-toggle="modal" data-bs-target="#staticExcluir" class="btn btn-danger">Excluir</button>');
+                const ModalButtonExc = $('<button type="button" data-bs-toggle="modal" data-bs-target="#staticExcluir' + item.id + '" class="btn btn-danger">Excluir</button>');
                 ModalButtonExc.click(function () {
-                    console.log(item.id); //Para visualizar se o id esta sendo passado corretamente
-                    const modalExc = $('<div class="modal fade" id="staticExcluir" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">');
+                    const modalExc = $('<div class="modal fade" id="staticExcluir' + item.id + '" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">');
+                    
                     let ModalTodo = $('<div class="modal-dialog">');
                     let modalContent = $('<div class="modal-content">');
                     let modalHeader = $('<div class="modal-header">');
@@ -96,7 +96,6 @@ $(document).ready(function () {
 
                 const ModalButtonAlt = $('<button type="button" data-bs-toggle="modal" data-bs-target="#staticAlterar" class="btn btn-warning">Alterar</button>');
                 ModalButtonAlt.click(function () {
-                    console.log(item.id); //Para visualizar se o id esta sendo passado corretamente
                     const modalAlt = $('<div class="modal fade" id="staticAlterar" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">');
                     let ModalTodo = $('<div class="modal-dialog">');
                     let modalContent = $('<div class="modal-content">');

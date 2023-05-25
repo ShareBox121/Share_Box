@@ -13,7 +13,5 @@ class Files extends Model
 
     protected $fillable = [
         'path',
-        'title',
-        'description'
     ];
 }
