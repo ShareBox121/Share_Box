@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\Files;
 
 class HomeController extends Controller
 {
@@ -11,7 +12,15 @@ class HomeController extends Controller
      */
     public function index()
     {
-        return view('site.home');
+
+        $files = Files::all();
+
+        $searchType = [
+            'search' => request('search'),
+            'searchID' => request('searchID'),
+            'searchFirst' => request('searchFirst')
+        ];
+        return view('site.home', compact('files'));
     }
 
     /**
@@ -50,14 +59,14 @@ class HomeController extends Controller
     {
         if ($searchType['search']) {
             $search = $searchType['search'];
-            return Posts::where('tittle', 'like', "%{$search}%")->get();
+            return Files::where('title', 'like', "%{$search}%")->get();
         } elseif ($searchType['searchID']) {
-            return Posts::where('id', $searchType['searchID'])->get();
+            return Files::where('id', $searchType['searchID'])->get();
         } elseif ($searchType['searchFirst']) {
             $search = $searchType['searchFirst'];
-            return Posts::where('tittle', 'LIKE', "{$search}%")->get();
+            return Files::where('title', 'LIKE', "{$search}%")->get();
         } else {
-            return Posts::all();
+            return Files::all();
         }
     }
 
