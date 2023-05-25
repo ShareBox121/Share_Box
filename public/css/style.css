@@ -6,15 +6,25 @@ select:focus {
   outline: 0;
 }
 .search {
-  background: transparent;
-  background-image: url(./img/search.svg);
-  background-repeat: no-repeat;
-  background-position: left;
-  background-size: 1.3em;
-  padding-left: 2em;
-  border-bottom: 0 !important;
-  color: #fafafa !important;
-  width: 7rem;
+    position: relative;
+    background: transparent;
+    background-size: 1.3em;
+    display: flex;
+    align-items: center;
+}
+
+.search>input {
+    padding-left: 2.5em;
+    background: transparent;
+    border-bottom: 0 !important;
+    color: #fafafa !important;
+    /* width: 7rem; */
+}
+
+.search>img {
+    position: absolute;
+    left: 0.5em;
+    width: 25px;
 }
 
 .search:hover {

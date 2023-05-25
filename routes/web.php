@@ -20,12 +20,14 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', [HomeController::class, 'index'])->name('site.home');
 
 // rota responsavel por criar, visualizar, editar, excluir e salvar
-Route::get('add.index', [AddController::class, 'index'])->name('add.index');
-Route::get('add.edit', [AddController::class, 'edit'])->name('add.edit');
-Route::get('add.destroy', [AddController::class, 'destroy'])->name('add.destroy');
-Route::get('add.show', [AddController::class, 'show'])->name('add.show');
-Route::get('add.create', [AddController::class, 'create'])->name('add.create');
-Route::post('add.store', [AddController::class, 'store'])->name('add.store');
+Route::get('/conteudo', [AddController::class, 'index'])->name('add.index');
+Route::get('/conteudo/files', [AddController::class, 'carregarDados'])->name('add.index');
+Route::post('/add', [AddController::class, 'store'])->name('add.store');
+Route::get('/editar', [AddController::class, 'edit'])->name('add.edit');
+Route::post('/conteudo/alterar/{id}/{path}', [AddController::class, 'update'])->name('add.update');
+Route::post('/conteudo/delete/{id}', [AddController::class, 'destroy'])->name('add.destroy');
+Route::get('/exibir/{id}', [AddController::class, 'show'])->name('add.show');
+Route::get('/adicionar', [AddController::class, 'create'])->name('add.create');
 
 
 Route::get('/dashboard', function () {
