@@ -7,41 +7,48 @@ body {
 
 .card {
     min-height: 200px !important;
-    padding: 3rem;
+    padding: 1rem;
+    width: 700px;
+    height: 300px;
+    padding-top: 2rem;
     border: 2px solid black !important;
     border-radius: 30px !important;
-}
 
-#logo {
-    object-fit: cover;
-    height: 60px;
-    width: 60px;
 }
 
 input {
     border-radius: 50px !important;
     border: 2px solid black !important;
-}
-
-.forgot-password {
-    color: black;
-}
-
-#open {
-    min-width: 50px !important;
-}
-
-.line {
-    border: 1px solid black;
     width: 100%;
 }
 
 .btn {
-    border-radius: 30px !important;
+    border-radius: .5rem !important;
+    width: 350px;
+    height: 3rem;
+
+    
+    
+}
+.a{
+
+    text-align: center;
+    color: black;
 }
 
+/* 
 @media screen and (max-width: 768px) {
     .card {
         padding: 1rem;
+        font-size: .4rem;
     }
 }
+ */
+p {
+    color: rgb(171, 171, 171);
+}
+
+/* .form-control {
+    width: 100% !important;
+} */
+
