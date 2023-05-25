@@ -10,11 +10,22 @@ class AddController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Request $request)
     {
-        $files = Files::All();
 
-        return view('add.index', compact('files'));
+        return view('add.index');
+
+    }
+
+    /**
+     * Show the form for find a esource.
+     */
+    public function carregarDados()
+    {
+        //Puxa do banco a lista de arquivos
+        $dados = Files::All();
+
+        return response()->json($dados);
     }
 
     /**
@@ -40,21 +51,27 @@ class AddController extends Controller
 
         $files->path = "";
 
-        $dirPath = "images/files/";
+        $dirPath = "img/files/";
 
-        if ($request->hasFile('path') && $request->file('path')->isValid()) {
-            $requestPath = $request->path;
-            $extension = $requestPath->extension();
+        $requestPath = $request->file('path');
 
+        if ($request->hasFile('path') && $requestPath->isValid()) {
+            $extension = $requestPath->getClientOriginalExtension();
             $pathName = md5($requestPath->getClientOriginalName() . strtotime('now')) . "." . $extension;
 
             $requestPath->move(public_path($dirPath), $pathName);
             $files->path = $dirPath . $pathName;
+            
+        }
+        else {
+            return redirect()->back()->with('error', 'Falha ao fazer upload');
         }
 
         $files->save();
-        
-        return redirect()->route('site.home');
+
+        $dados = Files::All();
+
+        return response()->json($dados);
     }
 
     /**
@@ -79,6 +96,32 @@ class AddController extends Controller
     public function update(Request $request, string $id)
     {
         //
+        $files = Files::findOrFail($id);
+        
+        $files->path = "";
+
+        $dirPath = "img/files/";
+
+        $requestPath = $request->file('path');
+
+        if ($request->hasFile('path') && $requestPath->isValid()) {
+            $extension = $requestPath->getClientOriginalExtension();
+            $pathName = md5($requestPath->getClientOriginalName() . strtotime('now')) . "." . $extension;
+
+            $requestPath->move(public_path($dirPath), $pathName);
+            $files->path = $dirPath . $pathName;
+            
+        }
+
+        else {
+            return redirect()->back()->with('error', 'Falha ao fazer upload');
+        }
+
+        $files->update();
+
+        $files->save();
+
+        return response()->json($files);
     }
 
     /**
@@ -86,6 +129,9 @@ class AddController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        $files = Files::findOrFail($id);
+        $files->delete();
+
+        return response()->json($files);
     }
 }
