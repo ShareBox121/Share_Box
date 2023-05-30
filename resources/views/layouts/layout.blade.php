@@ -45,7 +45,7 @@
             <img src="{{ asset('img/search.svg') }}" alt="">
             <input class=" mr-sm-2" type="search" id="usr" placeholder="Buscar">
         </div>
-        <button class="btn btn-dark my-2 my-sm-0 ms-3" type="submit">Login</button>
+        <button class="btn btn-dark my-2 my-sm-0 ms-3" type="submit" onClick="{{route('login')}}"> Login</button>
     </nav>
 
     <main>
