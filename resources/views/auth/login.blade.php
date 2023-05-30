@@ -51,9 +51,11 @@
 
                     </div>
                     <div class="line m-3">
-                        <button type="button" id="new" class="btn btn-dark mt-2">
-                            Criar nova conta
-                        </button>
+                        <a href="/register">
+                            <button type="button" id="new" class="btn btn-dark mt-2">
+                                Criar nova conta
+                            </button>
+                        </a>
                     </div>
                 </form>
             </div>

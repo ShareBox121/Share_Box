@@ -3,6 +3,7 @@
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\AddController;
+use App\Http\Requests\Auth\LoginRequest;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -18,6 +19,9 @@ use Illuminate\Support\Facades\Route;
 
 // rota responsável pela tela principal
 Route::get('/', [HomeController::class, 'index'])->name('site.home');
+
+//login
+Route::get('/login', [LoginRequest::class, 'directTologin'])->name('login');
 
 // rota responsavel por criar, visualizar, editar, excluir e salvar
 Route::get('/conteudo', [AddController::class, 'index'])->name('add.index');
