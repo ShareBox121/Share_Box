@@ -8,7 +8,7 @@ body {
 .card {
     min-height: 200px !important;
     padding: 1rem;
-    width: 700px;
+    /* width: 700px; */
     height: 300px;
     padding-top: 2rem;
     border: 2px solid black !important;
