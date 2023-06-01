@@ -45,10 +45,12 @@ class AddController extends Controller
         //
         $request->validate([
             'path' => 'required',
+            'title' => 'required',
         ]);
 
         $files = new Files;
 
+        $files->title = $request->title;
         $files->path = "";
 
         $dirPath = "img/files/";

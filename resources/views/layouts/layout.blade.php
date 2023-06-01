@@ -41,10 +41,14 @@
                 </ul>
             </div>
         </div>
+        
+        <form action="{{ route('publication.index') }}" method="GET">
         <div class="search">
             <img src="{{ asset('img/search.svg') }}" alt="">
-            <input class=" mr-sm-2" type="search" id="usr" placeholder="Buscar">
+            <input class=" mr-sm-2" type="search" name="search" id="usr" placeholder="Buscar">
         </div>
+</form>
+
         <a href="/login">
             <button class="btn btn-dark my-2 my-sm-0 ms-3" type="submit"> Login</button>
         </a>
