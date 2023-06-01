@@ -33,7 +33,7 @@
                         <input id="password" type="password" class="form-control" required autocomplete="current-password" placeholder="Senha:" />
                         <x-input-error :messages="$errors->get('password')" class="mt-2" />
                     </div>
-                    <div class="d-flex justify-content-center align-items-center mt-4 mb-4">
+                    <div  class="d-flex justify-content-center align-items-center mt-4 mb-4">
                         <x-primary-button id="open" class="btn btn-dark">
                             {{ __('Entrar') }}
                         </x-primary-button>
@@ -50,7 +50,7 @@
                         </div>
 
                     </div>
-                    <div class="line m-3">
+                    <div class="d-flex justify-content-center align-items-center mt-4 mb-4" class="line m-3">
                         <a href="/register">
                             <button type="button" id="new" class="btn btn-dark mt-2">
                                 Criar nova conta
