@@ -33,7 +33,7 @@
                         <a class="nav-link" href="/conteudo">Conteúdos</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#">Biblioteca</a>
+                        <a class="nav-link" href="{{ route('publication.index') }}">Biblioteca</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="{{ route('add.create') }}">Adicionar</a>
