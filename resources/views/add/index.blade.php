@@ -3,6 +3,7 @@
 @section('content')
     <form id="upload-form" enctype="multipart/form-data">
         @csrf
+        <input name="title">
         <input type="file" name="path" id="path">
         <button type="submit">Subir</button>
     </form>
