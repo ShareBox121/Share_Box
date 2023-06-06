@@ -63,9 +63,11 @@ $(document).ready(function () {
             data.forEach(function (item) {
                 const linha = $('<tr>');
                 linha.append($('<th>').text(item.id));
+                linha.append($('<th>').text(item.title));
                 linha.append($('<td>').html(`<img src="${item.path}" width="100" height="100" />`));
+                linha.append($('<th>').text(item.type));
 
-                const ModalButtonExc = $('<button type="button" data-bs-toggle="modal" data-bs-target="#staticExcluir' + item.id + '" class="btn btn-danger">Excluir</button>');
+                const ModalButtonExc = $('<button type="button" data-bs-toggle="modal" data-bs-target="#staticExcluir' + item.id + '" class="btn btn-danger text-black">Excluir</button>');
                 ModalButtonExc.click(function () {
                     const modalExc = $('<div class="modal fade" id="staticExcluir' + item.id + '" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">');
                     
