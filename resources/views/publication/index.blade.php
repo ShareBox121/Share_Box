@@ -52,7 +52,7 @@
                 var fileContainers = document.querySelectorAll('.file-container');
 
                 fileContainers.forEach(function(container) {
-                    var fileType = container.getAttribute('data-filetype');
+                    var fileType = container.getAttribute('data-filetype').toLowerCase();
 
                     console.log(fileType);
 
@@ -61,7 +61,7 @@
                     } else if (selectedType === 'image' && (fileType === 'jpg' || fileType === 'jpeg' || fileType ===
                             'png')) {
                         container.style.display = 'block';
-                    } else if (selectedType === 'document' && (fileType === 'pdf' || fileType === 'docx')) {
+                    } else if (selectedType === 'document' && (fileType === 'pdf' || fileType === 'docx' || fileType === 'txt')) {
                         container.style.display = 'block';
                     } else if (selectedType === 'video' && fileType === 'mp4') {
                         container.style.display = 'block';
