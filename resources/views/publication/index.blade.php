@@ -30,12 +30,12 @@
             <div class="file-container" data-filetype="{{ $fileExtension }}" style="display: block;">
                 <div class="container p-5">
                     <div class="row">
-                        <div class="col-md-6">
+                        <div class="">
                             <div data-aos="fade-left" data-aos-duration="2000">
                                 <h1 class="title">{{ $file->title }}</h1>
                                 <br>
                                 @if ($fileExtension === 'pdf')
-                                    <embed src="{{ $file->path }}" type="application/pdf" width="500px" height="500px">
+                                    <embed src="{{ $file->path }}" type="application/pdf" width="300px" height="300px">
                                 @else
                                     <img src="{{ $file->path }}" style="width:500px">
                                 @endif
@@ -54,11 +54,16 @@
                 fileContainers.forEach(function(container) {
                     var fileType = container.getAttribute('data-filetype');
 
-                    if (selectedType === '' || selectedType === 'all' ||
-                        (selectedType === 'image' && (fileType === 'jpg' || fileType === 'jpeg' || fileType ===
-                        'png')) ||
-                         (selectedType === 'document' && (fileType === 'pdf' || fileType === 'txt')) ||
-                         (selectedType === 'video' && (fileType === 'mp4'))) {
+                    console.log(fileType);
+
+                    if (selectedType === '' || selectedType === 'all') {
+                        container.style.display = 'block';
+                    } else if (selectedType === 'image' && (fileType === 'jpg' || fileType === 'jpeg' || fileType ===
+                            'png')) {
+                        container.style.display = 'block';
+                    } else if (selectedType === 'document' && (fileType === 'pdf' || fileType === 'docx')) {
+                        container.style.display = 'block';
+                    } else if (selectedType === 'video' && fileType === 'mp4') {
                         container.style.display = 'block';
                     } else {
                         container.style.display = 'none';
@@ -66,11 +71,7 @@
                 });
             }
         </script>
-
-
     </body>
-
-
 
     </html>
 @endsection
