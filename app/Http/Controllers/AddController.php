@@ -3,7 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Models\Files;
+use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class AddController extends Controller
 {
@@ -12,9 +14,10 @@ class AddController extends Controller
      */
     public function index(Request $request)
     {
+        $user = User::All();
+        $dados = Files::All();
 
-        return view('add.index');
-
+        return view('add.index', compact('dados', 'user'));
     }
 
     /**
@@ -24,6 +27,23 @@ class AddController extends Controller
     {
         //Puxa do banco a lista de arquivos
         $dados = Files::All();
+
+        
+
+        foreach ($dados as $dado) {
+            if ($dado->type == "mp4") {
+                $dado->path = $dado->image;
+            }
+            if ($dado->type == "txt") {
+                $dado->path = $dado->image;
+            }
+            if ($dado->type == "pdf") {
+                $dado->path = $dado->image;
+            }
+            if ($dado->type == "docx" || $dado->type == "doc") {
+                $dado->path = $dado->image;
+            }
+        }
 
         return response()->json($dados);
     }
@@ -45,13 +65,17 @@ class AddController extends Controller
         //
         $request->validate([
             'path' => 'required',
-            'title' => 'required',
         ]);
 
         $files = new Files;
 
+        $files->user_id = Auth::user()->id;
+
+        $files->image = "";
         $files->title = $request->title;
         $files->path = "";
+
+        $files->description = $request->description;
 
         $files->type = "";
 
@@ -65,16 +89,49 @@ class AddController extends Controller
 
             $requestPath->move(public_path($dirPath), $pathName);
             $files->type = $extension;
-            $files->path = $dirPath . $pathName;
-            
-        }
-        else {
+            if ($extension === "txt" || $extension === "pdf" || $extension === "docx" || $extension === "doc" || $extension === "mp4") {
+
+                if ($extension === "txt") {
+                    $files->image = "/img/iconFiles/iconTXT.png";
+                } elseif ($extension === "pdf") {
+                    $files->image = "/img/iconFiles/iconPDF.png";
+                } elseif ($extension === "docx" || $extension === "doc") {
+                    $files->image = "/img/iconFiles/iconDOCX.png";
+                } elseif ($extension === "mp4") {
+                    $files->image = "/img/iconFiles/iconMP4.png";
+                }
+                $files->path = $dirPath . $pathName;
+            } elseif ($extension === "png" || $extension === "jpg" || $extension === "jpeg") {
+                $files->path = $dirPath . $pathName;
+            } else {
+                return redirect()->back()->with('error', 'Falha ao fazer upload');
+            }
+        } else {
             return redirect()->back()->with('error', 'Falha ao fazer upload');
         }
 
         $files->save();
 
         $dados = Files::All();
+
+        foreach ($dados as $dado) {
+            if ($dado->type == "mp4") {
+                $dado->path = $dado->image;
+            }
+            if ($dado->type == "txt") {
+                $dado->path = $dado->image;
+            }
+            if ($dado->type == "pdf") {
+                $dado->path = $dado->image;
+            }
+            if ($dado->type == "docx" || $dado->type == "doc") {
+                $dado->path = $dado->image;
+            }
+
+            $user = User::where('id', $dados->user_id)->first();
+
+            $dado->username = $user->name;
+        }
 
         return response()->json($dados);
     }
@@ -102,7 +159,7 @@ class AddController extends Controller
     {
         //
         $files = Files::findOrFail($id);
-        
+
         $files->path = "";
 
         $dirPath = "img/files/";
@@ -115,10 +172,7 @@ class AddController extends Controller
 
             $requestPath->move(public_path($dirPath), $pathName);
             $files->path = $dirPath . $pathName;
-            
-        }
-
-        else {
+        } else {
             return redirect()->back()->with('error', 'Falha ao fazer upload');
         }
 

@@ -64,67 +64,69 @@ $(document).ready(function () {
                 const linha = $('<tr>');
                 linha.append($('<th>').text(item.id));
                 linha.append($('<th>').text(item.title));
+                linha.append($('<th>').text(item.description));
                 linha.append($('<td>').html(`<img src="${item.path}" width="100" height="100" />`));
                 linha.append($('<th>').text(item.type));
 
-                const ModalButtonExc = $('<button type="button" data-bs-toggle="modal" data-bs-target="#staticExcluir' + item.id + '" class="btn btn-danger text-black">Excluir</button>');
-                ModalButtonExc.click(function () {
-                    const modalExc = $('<div class="modal fade" id="staticExcluir' + item.id + '" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">');
-                    
-                    let ModalTodo = $('<div class="modal-dialog">');
-                    let modalContent = $('<div class="modal-content">');
-                    let modalHeader = $('<div class="modal-header">');
-                    let modalBody = $('<div class="modal-body">');
-                    let modalFooter = $('<div class="modal-footer">');
-                    let modalTitle = $('<h2 class="modal-title">').text('Excluir dados do ID: ' + item.id + '?');
-                    let closeModalBtn = $('<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">');
-                    let confirmationMessage = $('<p>').text('Deseja realmente excluir os dados?');
-                    let cancelButton = $('<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">').text('Cancelar');
-                    let deleteButton = $('<button type="button" class="btn btn-danger" data-bs-dismiss="modal">Excluir</button>');
+                const ModalButtonExc = $('<button type="button" data-bs-toggle="modal" data-bs-target="#staticExcluir' + item.id + '" class="btn btn-danger text-black mt-2">Excluir</button>');
+                // ModalButtonExc.click(function () {
+                const modalExc = $('<div class="modal fade" id="staticExcluir' + item.id + '" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">');
 
-                    deleteButton.click(function () {
-                        console.log(item.id);
-                        excluirDados(item.id);
-                    });
+                let ModalTodoExc = $('<div class="modal-dialog">');
+                let modalContentExc = $('<div class="modal-content">');
+                let modalHeaderExc = $('<div class="modal-header">');
+                let modalBodyExc = $('<div class="modal-body">');
+                let modalFooterExc = $('<div class="modal-footer">');
+                let modalTitleExc = $('<h2 class="modal-title">').text('Excluir dados do ID: ' + item.id + '?');
+                let closeModalBtnExc = $('<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">');
+                let confirmationMessageExc = $('<p>').text('Deseja realmente excluir os dados?');
+                let cancelButtonExc = $('<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">').text('Cancelar');
+                let deleteButtonExc = $('<button type="button" class="btn btn-danger" data-bs-dismiss="modal">Excluir</button>');
 
-                    modalHeader.append(modalTitle, closeModalBtn);
-                    modalBody.append(confirmationMessage);
-                    modalFooter.append(cancelButton, deleteButton);
-                    modalContent.append(modalHeader, modalBody, modalFooter);
-                    ModalTodo.append(modalContent);
-                    modalExc.append(ModalTodo);
-                    ModalExcluirDadosText.append(modalExc);
+                deleteButtonExc.click(function () {
+                    console.log(item.id);
+                    excluirDados(item.id);
                 });
 
-                const ModalButtonAlt = $('<button type="button" data-bs-toggle="modal" data-bs-target="#staticAlterar" class="btn btn-warning">Alterar</button>');
-                ModalButtonAlt.click(function () {
-                    const modalAlt = $('<div class="modal fade" id="staticAlterar" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">');
-                    let ModalTodo = $('<div class="modal-dialog">');
-                    let modalContent = $('<div class="modal-content">');
-                    let modalHeader = $('<div class="modal-header">');
-                    let modalBody = $('<div class="modal-body">');
-                    let modalFooter = $('<div class="modal-footer">');
-                    let modalTitle = $('<h2 class="modal-title">').text('Alterar dados do ID: ' + item.id + '?');
-                    let closeModalBtn = $('<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">');
-                    let confirmationForm = $('<form id="altForm">');
-                    let estruturaForm = $('<input type="file" name="path" id="path">');
-                    let cancelButton = $('<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">').text('Cancelar');
-                    let alterarButton = $('<button type="button" class="btn btn-warning" data-bs-dismiss="modal">Alterar</button>');
+                modalHeaderExc.append(modalTitleExc, closeModalBtnExc);
+                modalBodyExc.append(confirmationMessageExc);
+                modalFooterExc.append(cancelButtonExc, deleteButtonExc);
+                modalContentExc.append(modalHeaderExc, modalBodyExc, modalFooterExc);
+                ModalTodoExc.append(modalContentExc);
+                modalExc.append(ModalTodoExc);
+                ModalExcluirDadosText.append(modalExc);
+                // });
 
-                    alterarButton.click(function () {
-                        console.log(item.id);
-                        alterarDados(item.id, estruturaForm);
-                    });
 
-                    modalHeader.append(modalTitle, closeModalBtn);
-                    confirmationForm.append(estruturaForm);
-                    modalBody.append(confirmationForm);
-                    modalFooter.append(cancelButton, alterarButton);
-                    modalContent.append(modalHeader, modalBody, modalFooter);
-                    ModalTodo.append(modalContent);
-                    modalAlt.append(ModalTodo);
-                    ModalAlterarDadosText.append(modalAlt);
+                const ModalButtonAlt = $('<button type="button" data-bs-toggle="modal" data-bs-target="#staticAlterar" class="btn btn-warning mt-2 ms-3">Alterar</button>');
+                // ModalButtonAlt.click(function () {
+                const modalAlt = $('<div class="modal fade" id="staticAlterar" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">');
+                let ModalTodo = $('<div class="modal-dialog">');
+                let modalContent = $('<div class="modal-content">');
+                let modalHeader = $('<div class="modal-header">');
+                let modalBody = $('<div class="modal-body">');
+                let modalFooter = $('<div class="modal-footer">');
+                let modalTitle = $('<h2 class="modal-title">').text('Alterar dados do ID: ' + item.id + '?');
+                let closeModalBtn = $('<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">');
+                let confirmationForm = $('<form id="altForm">');
+                let estruturaForm = $('<input type="file" name="path" id="path">');
+                let cancelButton = $('<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">').text('Cancelar');
+                let alterarButton = $('<button type="button" class="btn btn-warning" data-bs-dismiss="modal">Alterar</button>');
+
+                alterarButton.click(function () {
+                    console.log(item.id);
+                    alterarDados(item.id, estruturaForm);
                 });
+
+                modalHeader.append(modalTitle, closeModalBtn);
+                confirmationForm.append(estruturaForm);
+                modalBody.append(confirmationForm);
+                modalFooter.append(cancelButton, alterarButton);
+                modalContent.append(modalHeader, modalBody, modalFooter);
+                ModalTodo.append(modalContent);
+                modalAlt.append(ModalTodo);
+                ModalAlterarDadosText.append(modalAlt);
+                // });
 
                 linha.append(ModalButtonExc);
                 linha.append(ModalButtonAlt);
