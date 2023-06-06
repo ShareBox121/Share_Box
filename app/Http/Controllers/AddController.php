@@ -53,6 +53,8 @@ class AddController extends Controller
         $files->title = $request->title;
         $files->path = "";
 
+        $files->type = "";
+
         $dirPath = "img/files/";
 
         $requestPath = $request->file('path');
@@ -62,6 +64,7 @@ class AddController extends Controller
             $pathName = md5($requestPath->getClientOriginalName() . strtotime('now')) . "." . $extension;
 
             $requestPath->move(public_path($dirPath), $pathName);
+            $files->type = $extension;
             $files->path = $dirPath . $pathName;
             
         }
